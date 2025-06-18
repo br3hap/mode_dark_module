@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates xml:space="preserve">
-    <t t-name="mode_dark_module.Dark_mode">
+    <t t-name="mode_dark_module.SystrayItemTemplate">
+        <div class="o_web_studio_navbar_item d-none d-md-inline-block"
+             t-on-click.prevent="toggleTheme"
+             title="Toggle Dark/Light Mode"
+             role="button"
+             aria-haspopup="true"
+             aria-expanded="false">
+            <button aria-label="Toggle Dark/Light Mode" class="o_nav_entry btn btn-link">
+                <t t-if="this.state.color_scheme === 'light'">
+                    <i class="fa fa-moon-o" role="img"/>
+                </t>
+                <t t-else="">
+                    <i class="fa fa-sun-o" role="img"/>
+                </t>
+            </button>
+        </div>
     </t>
 </templates>
