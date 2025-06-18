@@ -10,6 +10,12 @@
     'data': [
         
     ],
+
+    'assets': {
+        'web.assets_backend': [
+            'mode_dark_module/static/**/*',
+        ],
+    },
     
     'application': True,
     'installable': True,
