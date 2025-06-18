@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Modo Oscuro',
-    'version': '',
+    'version': '1.0',
     'summary': """ Módulo que permite controlar el modo oscuro - odoo 18""",
     'author': 'Breithner Aquituari',
     'website': '',
