@@ -9,7 +9,6 @@ const SCHEMES = {
     DARK: 'dark',
 };
 
-//Esta función asegura que el DOM esté listo antes de aplicar la clase
 function applyInitialTheme() {
     const storedTheme = cookie.get('color_scheme') || SCHEMES.LIGHT;
     const apply = () => {
