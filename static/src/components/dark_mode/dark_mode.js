@@ -9,16 +9,32 @@ const SCHEMES = {
     DARK: 'dark',
 };
 
-class DarkMode extends Component {
+//Esta función asegura que el DOM esté listo antes de aplicar la clase
+function applyInitialTheme() {
+    const storedTheme = cookie.get('color_scheme') || SCHEMES.LIGHT;
+    const apply = () => {
+        if (storedTheme === SCHEMES.DARK) {
+            document.body.classList.add('night_mode');
+        } else {
+            document.body.classList.remove('night_mode');
+        }
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', apply);
+    } else {
+        apply();
+    }
+}
+applyInitialTheme();
 
+class DarkMode extends Component {
     setup() {
-        this.state = useState({ color_scheme: SCHEMES.LIGHT });
+        this.state = useState({
+            color_scheme: cookie.get('color_scheme') || SCHEMES.LIGHT,
+        });
     }
 
     mounted() {
-        const storedTheme = cookie.get('color_scheme');
-        this.state.color_scheme = storedTheme || SCHEMES.LIGHT;
-        cookie.set('color_scheme', this.state.color_scheme);
         this._applyTheme();
     }
 
@@ -27,7 +43,8 @@ class DarkMode extends Component {
     }
 
     toggleTheme() {
-        this.state.color_scheme = this.state.color_scheme === SCHEMES.LIGHT ? SCHEMES.DARK : SCHEMES.LIGHT;
+        this.state.color_scheme =
+            this.state.color_scheme === SCHEMES.LIGHT ? SCHEMES.DARK : SCHEMES.LIGHT;
         cookie.set('color_scheme', this.state.color_scheme);
         this._applyTheme();
     }
